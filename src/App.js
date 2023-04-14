@@ -1,5 +1,7 @@
 import './App.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { addDoc, collection, getDoc } from "firebase/firestore"
+import { db } from "./firebase-setup/firebase"
 
 function App() {
 
@@ -8,6 +10,10 @@ function App() {
   const incrementCounter = () => {
     setCounter(counter + 1);
   }
+
+  useEffect(() => {
+    setCounter(db.collection("counter").doc('data').number);
+  }, [counter])
 
   return (
     <div className="App">
