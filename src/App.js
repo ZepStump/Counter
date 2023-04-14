@@ -32,7 +32,7 @@ function App() {
     console.log(state)
     if (counter > -1 && state != "") {
       db.collection("counter").doc("data")
-      .update({number: counter});
+      .update({number: counter + 1});
       var total = 0
       if (table) {
         for (let i = 1; i < table.length; i++) {
