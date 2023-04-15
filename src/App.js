@@ -9,13 +9,15 @@ function App() {
   const [counter, setCounter] = useState(-1);
   const [state, setState] = useState("");
   const [table, setTable] = useState([]);
+  const [sto, setSto] = useState(0);
 
   const incrementCounter = () => {
     setCounter(counter + 1);
   }
 
   useEffect(() => {
-    console.log(counter)
+    console.log("hi")
+    if (sto == 0) {
     db.collection("counter").doc("data")
         .onSnapshot(doc => setCounter(doc.data().number));
     db.collection('countries')
@@ -25,12 +27,11 @@ function App() {
               data: doc.data()
             })))
         ))
-    console.log(table)
+    setSto(1);
+    }
   }, [])
 
   useEffect(() => {
-    console.log(table)
-    console.log(state)
     if (counter > -1 && state != "") {
       db.collection("counter").doc("data")
       .update({number: counter});
@@ -42,7 +43,6 @@ function App() {
           }
         }
       }
-      console.log(total)
       db.collection("countries").doc(state)
       .update({number: total + 1})
     }
