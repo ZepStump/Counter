@@ -15,6 +15,7 @@ function App() {
   }
 
   useEffect(() => {
+    console.log(counter)
     db.collection("counter").doc("data")
         .onSnapshot(doc => setCounter(doc.data().number));
     db.collection('countries')
