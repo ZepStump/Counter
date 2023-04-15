@@ -10,6 +10,7 @@ function App() {
   const [state, setState] = useState("");
   const [table, setTable] = useState([]);
   const [sto, setSto] = useState(0);
+  const [sto1, setSto1] = useState(0);
 
   const incrementCounter = () => {
     setCounter(counter + 1);
@@ -42,6 +43,10 @@ function App() {
             total = table[i].data.number
           }
         }
+      }
+      if (sto1 == 0) {
+        total = total - 1;
+        setSto1(1);
       }
       db.collection("countries").doc(state)
       .update({number: total + 1})
